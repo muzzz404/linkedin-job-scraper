@@ -2,22 +2,13 @@ name: Run Scraper Every 10 Mins
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/10 * * * *"  # Every 10 mins
   workflow_dispatch:
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Google Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget curl gnupg
-          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-
       - uses: actions/checkout@v3
 
       - name: Setup Node.js
